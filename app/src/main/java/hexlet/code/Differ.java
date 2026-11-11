@@ -2,6 +2,7 @@ package hexlet.code;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Map;
 import java.util.Set;
@@ -11,8 +12,17 @@ public class Differ {
   private static final ObjectMapper MAPPER = new ObjectMapper();
 
   public static String generate(String filepath1, String filepath2) throws IOException {
-    Map<String, Object> data1 = getData(Path.of(filepath1));
-    Map<String, Object> data2 = getData(Path.of(filepath2));
+    Path path1 = Path.of(filepath1);
+    Path path2 = Path.of(filepath2);
+
+    String content1 = Files.readString(path1);
+    String content2 = Files.readString(path2);
+
+    String format1 = getFormat(path1);
+    String format2 = getFormat(path2);
+
+    Map<String, Object> data1 = Parser.parse(content1, format1);
+    Map<String, Object> data2 = Parser.parse(content2, format2);
 
     Set<String> keys = new TreeSet<>();
     keys.addAll(data1.keySet());
@@ -45,8 +55,13 @@ public class Differ {
     return result.toString();
   }
 
-  private static Map getData(Path path) throws IOException {
-    return MAPPER.readValue(path.toFile(), Map.class);
+  private static String getFormat(Path path) {
+    String filename = path.getFileName().toString();
+    int lastDotIndex = filename.lastIndexOf('.');
+    if (lastDotIndex == -1) {
+      return "";
+    }
+    return filename.substring(lastDotIndex + 1);
   }
 
   private static void appendLine(StringBuilder result, String sign, String key, Object value) {

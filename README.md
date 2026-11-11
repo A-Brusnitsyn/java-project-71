@@ -38,4 +38,5 @@ cd java-project-71
 [Хекслет](https://ru.hexlet.io/) — школа программирования: авторские программы обучения с практикой, поддержкой наставников и реальными проектами, которые остаются в резюме. Этот репозиторий — один из таких проектов.
 
 ## Asciinema
-https://asciinema.org/a/5wn4O6opOqKd6bLX
+https://asciinema.org/a/5wn4O6opOqKd6bLX - JSON parse
+https://asciinema.org/a/GArTkKCIm9MX8mG5 - YML parse
