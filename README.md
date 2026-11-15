@@ -40,3 +40,4 @@ cd java-project-71
 ## Asciinema
 https://asciinema.org/a/5wn4O6opOqKd6bLX - JSON parse
 https://asciinema.org/a/GArTkKCIm9MX8mG5 - YML parse
+https://asciinema.org/a/hKrfLYXEzr0IhAWf - Stylish
