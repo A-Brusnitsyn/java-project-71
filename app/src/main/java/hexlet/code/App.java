@@ -44,6 +44,11 @@ public class App implements Callable<Integer> {
       }
     }
 
+    if (!"stylish".equalsIgnoreCase(format)) {
+      System.err.println("Поддерживается только формат stylish");
+      return ExitCode.USAGE;
+    }
+
     String diff = Differ.generate(first.toString(), second.toString());
     System.out.println(diff);
 
