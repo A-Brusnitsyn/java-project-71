@@ -6,10 +6,15 @@ import java.nio.file.Path;
 import java.util.Map;
 
 public class Differ {
-  private static final Stylish STYLISH = new Stylish();
+  private static final String DEFAULT_FORMAT = "stylish";
 
   public static String generate(String filepath1, String filepath2) throws IOException {
-    return STYLISH.format(diff(filepath1, filepath2));
+    return generate(filepath1, filepath2, DEFAULT_FORMAT);
+  }
+
+  public static String generate(String filepath1, String filepath2, String format)
+      throws IOException {
+    return Formatter.format(diff(filepath1, filepath2), format);
   }
 
   public static Diff diff(String filepath1, String filepath2) throws IOException {
